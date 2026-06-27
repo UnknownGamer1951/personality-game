@@ -1,6 +1,3 @@
--- Creates all RemoteEvents/Functions under ReplicatedStorage.PersonalityGame.Remotes
--- Required by both server and client; safe to require multiple times.
-
 local RS = game:GetService("ReplicatedStorage")
 local folder = RS:WaitForChild("PersonalityGame")
 
@@ -18,16 +15,16 @@ local remotesFolder = getOrCreate("Folder", "Remotes", folder)
 
 local Remotes = {
 	-- Client → Server
-	SubmitAnswers    = getOrCreate("RemoteEvent",    "SubmitAnswers",    remotesFolder),
-	PurchaseProduct  = getOrCreate("RemoteEvent",    "PurchaseProduct",  remotesFolder),
+	SubmitAnswers       = getOrCreate("RemoteEvent", "SubmitAnswers",       remotesFolder),
+	LikeGame            = getOrCreate("RemoteEvent", "LikeGame",            remotesFolder),
 
 	-- Server → Client
-	ShowResult       = getOrCreate("RemoteEvent",    "ShowResult",       remotesFolder),
-	UpdateTimer      = getOrCreate("RemoteEvent",    "UpdateTimer",      remotesFolder),
-	TimerReset       = getOrCreate("RemoteEvent",    "TimerReset",       remotesFolder),
-
-	-- Server → Client (broadcast)
-	AnnounceReset    = getOrCreate("RemoteEvent",    "AnnounceReset",    remotesFolder),
+	ShowResult          = getOrCreate("RemoteEvent", "ShowResult",          remotesFolder),
+	UpdateTimer         = getOrCreate("RemoteEvent", "UpdateTimer",         remotesFolder),
+	UpdateSpeed         = getOrCreate("RemoteEvent", "UpdateSpeed",         remotesFolder),
+	TimerReset          = getOrCreate("RemoteEvent", "TimerReset",          remotesFolder),
+	AnnounceReset       = getOrCreate("RemoteEvent", "AnnounceReset",       remotesFolder),
+	UpdateLeaderboard   = getOrCreate("RemoteEvent", "UpdateLeaderboard",   remotesFolder),
 }
 
 return Remotes

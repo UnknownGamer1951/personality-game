@@ -7,6 +7,15 @@ local GameConfig = {}
 GameConfig.GameTitle       = "What Animal Are You?"
 GameConfig.WaitTimeSeconds = 600  -- 10 minutes
 
+-- Group ID for "Join Group for 1.5x speed" (set to your group ID after creating one, 0 = disabled)
+GameConfig.GroupId = 0
+
+-- Set this to your published game URL
+GameConfig.GameUrl = "https://www.roblox.com/games/0"
+
+-- How much each extra player speeds up the timer (0.1 = +10% per player)
+GameConfig.FriendSpeedBonus = 0.15
+
 GameConfig.Products = {
 	SkipOneMinute   = 0,
 	SkipFiveMinutes = 0,
