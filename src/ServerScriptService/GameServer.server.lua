@@ -35,7 +35,6 @@ end
 Remotes.SubmitAnswers.OnServerEvent:Connect(function(player, answers)
 	if type(answers) ~= "table" then return end
 	local result = calcResult(answers)
-	Remotes.ShowResult:FireClient(player, result)
 	player:SetAttribute("PersonalityResult", result)
 	player:SetAttribute("TimerStarted", true)
 end)

@@ -32,6 +32,15 @@ local function recalcSpeeds()
 	end
 end
 
+local function finishTimer(player)
+	playerData[player.UserId] = nil
+	player:SetAttribute("QuizCompleted", (player:GetAttribute("QuizCompleted") or 0) + 1)
+	local result = player:GetAttribute("PersonalityResult")
+	if result then
+		Remotes.ShowResult:FireClient(player, result)
+	end
+end
+
 local function startTimer(player)
 	playerData[player.UserId] = { remaining = TOTAL, speed = 1, likedGame = false }
 	recalcSpeeds()
@@ -66,7 +75,7 @@ RunService.Heartbeat:Connect(function(dt)
 			if player then
 				Remotes.UpdateTimer:FireClient(player, data.remaining)
 				if data.remaining <= 0 then
-					player:SetAttribute("QuizCompleted", (player:GetAttribute("QuizCompleted") or 0) + 1)
+					finishTimer(player)
 				end
 			end
 		end
@@ -80,6 +89,9 @@ Remotes.LikeGame.OnServerEvent:Connect(function(player)
 	data.likedGame = true
 	data.remaining = math.max(0, data.remaining - 60)
 	Remotes.UpdateTimer:FireClient(player, data.remaining)
+	if data.remaining <= 0 then
+		finishTimer(player)
+	end
 end)
 
 -- Robux purchases
@@ -88,6 +100,9 @@ local function skipTime(player, seconds)
 	if not data then return end
 	data.remaining = math.max(0, data.remaining - seconds)
 	Remotes.UpdateTimer:FireClient(player, data.remaining)
+	if data.remaining <= 0 then
+		finishTimer(player)
+	end
 end
 
 local function resetEveryone(instigator)

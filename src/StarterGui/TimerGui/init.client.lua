@@ -49,7 +49,7 @@ local analyzingLabel = Instance.new("TextLabel")
 analyzingLabel.Size               = UDim2.new(1, -20, 0, 32)
 analyzingLabel.Position           = UDim2.new(0, 10, 0, 10)
 analyzingLabel.BackgroundTransparency = 1
-analyzingLabel.Text               = "Analyzing your answers..."
+analyzingLabel.Text               = "Your result reveals when the timer ends!"
 analyzingLabel.Font               = Enum.Font.Gotham
 analyzingLabel.TextSize           = 20
 analyzingLabel.TextColor3         = Color3.fromRGB(160, 145, 130)
@@ -218,6 +218,7 @@ local function fmtTime(s)
 end
 
 Remotes.UpdateTimer.OnClientEvent:Connect(function(remaining)
+	if not screenGui.Enabled then screenGui.Enabled = true end
 	timerText.Text = fmtTime(remaining)
 	local ratio = math.clamp(remaining / TOTAL, 0, 1)
 	TweenService:Create(timerFill, TweenInfo.new(0.8), { Size = UDim2.fromScale(ratio, 1) }):Play()
@@ -227,9 +228,13 @@ Remotes.UpdateTimer.OnClientEvent:Connect(function(remaining)
 		BackgroundColor3 = Color3.fromRGB(r, g, 40)
 	}):Play()
 	if remaining <= 0 then
-		header.Text          = "🎉 Your result is ready!"
-		analyzingLabel.Text  = "Tap below to reveal your animal!"
-		timerText.Text       = "DONE!"
+		timerText.Text = "DONE!"
+		task.delay(0.5, function()
+			TweenService:Create(bg, TweenInfo.new(0.4), { BackgroundTransparency = 1 }):Play()
+			task.delay(0.5, function()
+				screenGui.Enabled = false
+			end)
+		end)
 	end
 end)
 

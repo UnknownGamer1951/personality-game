@@ -106,12 +106,12 @@ descLabel.TextColor3           = T.TextDark
 descLabel.TextWrapped          = true
 descLabel.Parent               = bg
 
--- "Calculating full result..." hint at bottom
+-- Bottom hint
 local waitHint = Instance.new("TextLabel")
 waitHint.Size                  = UDim2.new(1, 0, 0, 30)
 waitHint.Position              = UDim2.new(0, 0, 0.92, 0)
 waitHint.BackgroundTransparency= 1
-waitHint.Text                  = "Calculating your full result..."
+waitHint.Text                  = "Share your result with friends! 🐾"
 waitHint.Font                  = Enum.Font.Gotham
 waitHint.TextSize              = 15
 waitHint.TextColor3            = Color3.fromRGB(160, 140, 120)
@@ -178,19 +178,5 @@ Remotes.ShowResult.OnClientEvent:Connect(function(personalityKey)
 	fadeText(descLabel,   1.9)
 	fadeText(waitHint,    2.5)
 
-	-- Hand off to TimerGui after delay
-	task.delay(5, function()
-		TweenService:Create(bg, TweenInfo.new(0.5), { BackgroundTransparency = 1 }):Play()
-		task.delay(0.6, function()
-			screenGui.Enabled = false
-			local timerGui
-			for _, child in ipairs(playerGui:GetChildren()) do
-				if child:IsA("ScreenGui") and child.Name == "TimerGui" then
-					timerGui = child
-					break
-				end
-			end
-			if timerGui then timerGui.Enabled = true end
-		end)
-	end)
+	-- Result screen stays — no auto-dismiss
 end)
