@@ -5,21 +5,21 @@
 local GameConfig = {}
 
 -- Game branding
-GameConfig.GameTitle = "What Type of Person Are You?"
+GameConfig.GameTitle = "What Animal Are You?"
 GameConfig.WaitTimeSeconds = 600  -- 10 minutes
 
 -- Robux developer product IDs (create these in Creator Dashboard)
 -- Set to 0 until you create the products
 GameConfig.Products = {
-	SkipOneMinute  = 0,   -- costs whatever you set in dashboard, skips 1 min
-	SkipFiveMinutes = 0,  -- skips 5 min
-	ResetEveryone  = 0,   -- resets ALL other players' timers back to full (evil)
+	SkipOneMinute   = 0,  -- skips 1 min off your timer
+	SkipFiveMinutes = 0,  -- skips 5 min off your timer
+	ResetEveryone   = 0,  -- resets ALL other players' timers back to full (evil)
 }
 
 -- UI colors
 GameConfig.Theme = {
-	Background   = Color3.fromRGB(245, 239, 228),  -- cream
-	ButtonNormal = Color3.fromRGB(100, 204, 197),  -- teal
+	Background   = Color3.fromRGB(245, 239, 228),
+	ButtonNormal = Color3.fromRGB(100, 204, 197),
 	ButtonHover  = Color3.fromRGB(75, 175, 168),
 	TextDark     = Color3.fromRGB(74, 60, 48),
 	TextLight    = Color3.fromRGB(255, 255, 255),
@@ -28,88 +28,100 @@ GameConfig.Theme = {
 
 -- ============================================================
 --  QUESTIONS
---  Each question has:
---    text    - the question string
---    answers - list of { text, scores }
---    scores is a table mapping personality key → points added
 -- ============================================================
 GameConfig.Questions = {
 	{
-		text = "What gender are you?",
+		text = "Pick a place to hang out",
 		answers = {
-			{ text = "Boy",              scores = { Explorer = 1 } },
-			{ text = "Girl",             scores = { Creative = 1 } },
-			{ text = "Other",            scores = { Rebel = 1 } },
-			{ text = "Prefer not to say",scores = { Thinker = 1 } },
+			{ text = "Deep in the forest",    scores = { Wolf = 2 } },
+			{ text = "A sunny open field",    scores = { Eagle = 2 } },
+			{ text = "Near the ocean",        scores = { Dolphin = 2 } },
+			{ text = "A cozy cave or den",    scores = { Bear = 2 } },
 		},
 	},
 	{
-		text = "Pick a weekend activity",
+		text = "How do you handle problems?",
 		answers = {
-			{ text = "Go hiking",        scores = { Explorer = 2 } },
-			{ text = "Paint or draw",    scores = { Creative = 2 } },
-			{ text = "Play video games", scores = { Rebel = 1, Thinker = 1 } },
-			{ text = "Read a book",      scores = { Thinker = 2 } },
+			{ text = "Attack head-on",        scores = { Wolf = 2, Bear = 1 } },
+			{ text = "Get a birds-eye view",  scores = { Eagle = 2 } },
+			{ text = "Talk it out",           scores = { Dolphin = 2 } },
+			{ text = "Wait and be patient",   scores = { Bear = 2 } },
 		},
 	},
 	{
-		text = "Your friend group is...",
+		text = "Your ideal Friday night?",
 		answers = {
-			{ text = "Big and loud",     scores = { Explorer = 2 } },
-			{ text = "Small and close",  scores = { Thinker = 2 } },
-			{ text = "Chaotic and fun",  scores = { Rebel = 2 } },
-			{ text = "Artsy and chill",  scores = { Creative = 2 } },
+			{ text = "Howling with friends",  scores = { Wolf = 2 } },
+			{ text = "Soaring solo",          scores = { Eagle = 2 } },
+			{ text = "Playing in the water",  scores = { Dolphin = 2 } },
+			{ text = "Eating and sleeping",   scores = { Bear = 3 } },
 		},
 	},
 	{
-		text = "Pick a color",
+		text = "Pick a superpower",
 		answers = {
-			{ text = "Green",            scores = { Explorer = 1, Creative = 1 } },
-			{ text = "Purple",           scores = { Rebel = 1, Creative = 1 } },
-			{ text = "Blue",             scores = { Thinker = 2 } },
-			{ text = "Red",              scores = { Explorer = 2 } },
+			{ text = "Super speed",           scores = { Wolf = 2 } },
+			{ text = "Flight",                scores = { Eagle = 2 } },
+			{ text = "Talk to animals",       scores = { Dolphin = 2 } },
+			{ text = "Super strength",        scores = { Bear = 2 } },
 		},
 	},
 	{
-		text = "How do you make decisions?",
+		text = "How do your friends describe you?",
 		answers = {
-			{ text = "Go with my gut",   scores = { Explorer = 2, Rebel = 1 } },
-			{ text = "Overthink it",     scores = { Thinker = 3 } },
-			{ text = "Ask friends",      scores = { Creative = 1, Explorer = 1 } },
-			{ text = "Flip a coin",      scores = { Rebel = 3 } },
+			{ text = "Loyal and fierce",      scores = { Wolf = 3 } },
+			{ text = "Sharp and focused",     scores = { Eagle = 3 } },
+			{ text = "Fun and social",        scores = { Dolphin = 3 } },
+			{ text = "Calm but powerful",     scores = { Bear = 3 } },
+		},
+	},
+	{
+		text = "What do you do when someone messes with you?",
+		answers = {
+			{ text = "Fight back immediately",scores = { Wolf = 2, Bear = 1 } },
+			{ text = "Watch from a distance", scores = { Eagle = 2 } },
+			{ text = "Try to make peace",     scores = { Dolphin = 2 } },
+			{ text = "Ignore it... for now",  scores = { Bear = 2 } },
+		},
+	},
+	{
+		text = "Pick a snack",
+		answers = {
+			{ text = "Meat",                  scores = { Wolf = 2 } },
+			{ text = "Fish",                  scores = { Eagle = 2, Bear = 1 } },
+			{ text = "Seafood",               scores = { Dolphin = 2 } },
+			{ text = "Honey and berries",     scores = { Bear = 2 } },
 		},
 	},
 }
 
 -- ============================================================
 --  PERSONALITIES
---  The key must match the score keys above.
---  icon is an emoji shown on the result screen.
 -- ============================================================
 GameConfig.Personalities = {
-	Explorer = {
-		name        = "The Explorer",
-		icon        = "🌍",
-		description = "You're adventurous, energetic, and always chasing the next experience. You live for new places, new people, and new stories.",
-		color       = Color3.fromRGB(80, 180, 80),
+	Wolf = {
+		name        = "The Wolf",
+		icon        = "🐺",
+		description = "Fierce, loyal, and built for the pack. You lead from the front and never leave your people behind. When things get tough, you get tougher.",
+		color       = Color3.fromRGB(100, 100, 160),
 	},
-	Creative = {
-		name        = "The Creative",
-		icon        = "🎨",
-		description = "You see the world differently. Art, music, ideas — you bring color and imagination to everything you touch.",
-		color       = Color3.fromRGB(180, 100, 200),
+	Eagle = {
+		name        = "The Eagle",
+		icon        = "🦅",
+		description = "Sharp-eyed and independent. You see what others miss and you're not afraid to fly alone. Precision and freedom define you.",
+		color       = Color3.fromRGB(200, 140, 40),
 	},
-	Thinker = {
-		name        = "The Thinker",
-		icon        = "🧠",
-		description = "Logical, calm, and always 10 steps ahead. You analyze before you act and rarely get caught off guard.",
-		color       = Color3.fromRGB(80, 130, 200),
+	Dolphin = {
+		name        = "The Dolphin",
+		icon        = "🐬",
+		description = "Social, clever, and always having fun. You light up every room and make friends wherever you go. Life's a game and you're winning.",
+		color       = Color3.fromRGB(60, 160, 210),
 	},
-	Rebel = {
-		name        = "The Rebel",
-		icon        = "⚡",
-		description = "Rules? What rules? You carve your own path and love shaking things up. Life's too short to be boring.",
-		color       = Color3.fromRGB(220, 80, 80),
+	Bear = {
+		name        = "The Bear",
+		icon        = "🐻",
+		description = "Calm, powerful, and deeply chill — until someone pushes you too far. You conserve your energy for what matters and crush it when it counts.",
+		color       = Color3.fromRGB(160, 100, 60),
 	},
 }
 
