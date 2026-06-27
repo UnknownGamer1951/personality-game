@@ -141,7 +141,7 @@ local function rebuildRows(data)
 		empty.Size               = UDim2.new(1, 0, 0, 40)
 		empty.BackgroundTransparency = 1
 		empty.Text               = "No entries yet!"
-		empty.Font               = Enum.Font.GothamItalic
+		empty.Font               = Enum.Font.Gotham
 		empty.TextSize           = 14
 		empty.TextColor3         = Color3.fromRGB(160, 150, 140)
 		empty.Parent             = rowsFrame
