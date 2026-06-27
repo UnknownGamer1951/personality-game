@@ -1,0 +1,29 @@
+{
+	"name": "PersonalityGame",
+	"tree": {
+		"$className": "DataModel",
+		"ReplicatedStorage": {
+			"$className": "ReplicatedStorage",
+			"PersonalityGame": {
+				"$path": "src/ReplicatedStorage"
+			}
+		},
+		"ServerScriptService": {
+			"$className": "ServerScriptService",
+			"PersonalityGame": {
+				"$path": "src/ServerScriptService"
+			}
+		},
+		"StarterGui": {
+			"$className": "StarterGui",
+			"$path": "src/StarterGui"
+		},
+		"StarterPlayer": {
+			"$className": "StarterPlayer",
+			"StarterPlayerScripts": {
+				"$className": "StarterPlayerScripts",
+				"$path": "src/StarterPlayerScripts"
+			}
+		}
+	}
+}
