@@ -2,7 +2,7 @@ local Players          = game:GetService("Players")
 local DataStoreService = game:GetService("DataStoreService")
 local RS               = game:GetService("ReplicatedStorage")
 
-local Remotes    = require(RS:WaitForChild("PersonalityGame"):WaitForChild("Remotes"))
+local Remotes    = require(RS:WaitForChild("PersonalityGame"):WaitForChild("RemoteRefs"))
 local quizStore  = DataStoreService:GetOrderedDataStore("AnimalQuiz_Completions_v1")
 
 -- In-memory cache: userId → { name, count }

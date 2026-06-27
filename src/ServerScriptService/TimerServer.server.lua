@@ -4,7 +4,7 @@ local RunService         = game:GetService("RunService")
 local RS                 = game:GetService("ReplicatedStorage")
 
 local Config  = require(RS:WaitForChild("PersonalityGame"):WaitForChild("GameConfig"))
-local Remotes = require(RS:WaitForChild("PersonalityGame"):WaitForChild("Remotes"))
+local Remotes = require(RS:WaitForChild("PersonalityGame"):WaitForChild("RemoteRefs"))
 
 local TOTAL        = Config.WaitTimeSeconds
 local GROUP_ID     = Config.GroupId or 0

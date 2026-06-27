@@ -4,7 +4,7 @@ local RS       = game:GetService("ReplicatedStorage")
 local TweenService = game:GetService("TweenService")
 
 local Config   = require(RS:WaitForChild("PersonalityGame"):WaitForChild("GameConfig"))
-local Remotes  = require(RS:WaitForChild("PersonalityGame"):WaitForChild("Remotes"))
+local Remotes  = require(RS:WaitForChild("PersonalityGame"):WaitForChild("RemoteRefs"))
 local player   = Players.LocalPlayer
 local playerGui = player:WaitForChild("PlayerGui")
 local T        = Config.Theme

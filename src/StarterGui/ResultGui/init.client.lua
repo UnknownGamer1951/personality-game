@@ -4,7 +4,7 @@ local RS           = game:GetService("ReplicatedStorage")
 local TweenService = game:GetService("TweenService")
 
 local Config    = require(RS:WaitForChild("PersonalityGame"):WaitForChild("GameConfig"))
-local Remotes   = require(RS:WaitForChild("PersonalityGame"):WaitForChild("Remotes"))
+local Remotes   = require(RS:WaitForChild("PersonalityGame"):WaitForChild("RemoteRefs"))
 local player    = Players.LocalPlayer
 local playerGui = player:WaitForChild("PlayerGui")
 local T         = Config.Theme
@@ -183,7 +183,13 @@ Remotes.ShowResult.OnClientEvent:Connect(function(personalityKey)
 		TweenService:Create(bg, TweenInfo.new(0.5), { BackgroundTransparency = 1 }):Play()
 		task.delay(0.6, function()
 			screenGui.Enabled = false
-			local timerGui = playerGui:FindFirstChild("TimerGui")
+			local timerGui
+			for _, child in ipairs(playerGui:GetChildren()) do
+				if child:IsA("ScreenGui") and child.Name == "TimerGui" then
+					timerGui = child
+					break
+				end
+			end
 			if timerGui then timerGui.Enabled = true end
 		end)
 	end)
